@@ -1,0 +1,50 @@
+<!--components/list/list.wxml-->
+<scroll-view>
+ 
+ <block wx:if="{{lists[0].type===0||lists[0].type==1}}">
+    <navigator class="section section_gap" wx:for="{{lists}}" wx:for-item="item" wx:key="item.title" url="/pages/post/post?&title={{item.title}}&id={{item.id}}&uid={{item.uid}}&type={{item.type}}">
+      <view class="section__ctn"  wx:if="{{item.img}}">
+        <image
+          class='section_img'
+          style="width: 110px; height: 80px; background-color: #eeeeee;"
+          mode="scaleToFill"
+          src="{{item.img}}"
+          binderror="imgErr"
+        ></image>
+      </view>
+      <view class='section_text'>
+        <view class="section__title">{{item.title}}
+          <text class='tag' wx:for="{{item.tag}}" wx:for-item="item" wx:key="item">{{item}}</text>
+        </view>
+       <!--  <view class='description'>{{item.description}}</view> -->
+        <view class='section_info'>
+         <text class="info section__pv">{{item.pv}}次浏览  {{item.collection}}人收藏  <text wx:if="{{item.support}}">{{item.support}}人支持</text></text>
+         <!--  <text class="info section__collect">{{item.collect}}人收藏</text> -->
+          </view>
+      </view>
+      </navigator>
+</block>
+    <block wx:else>
+       <navigator class="section section_gap" wx:for="{{lists}}" wx:for-item="item" wx:key="item.title" url="/pages/answer/answer?&title={{item.title}}&id={{item.id}}&uid={{item.uid}}&type={{item.type}}">
+    <!--   <view class="section__ctn"  wx:if="{{item.img}}">
+        <image
+          class='section_img'
+          style="width: 110px; height: 80px; background-color: #eeeeee;"
+          mode="scaleToFill"
+          src="{{item.img}}"
+          binderror="imgErr"
+        ></image>
+      </view> -->
+      <view class='section_text'>
+        <view class="section__title">{{item.title}}
+          <text class='tag' wx:for="{{item.tag}}" wx:for-item="item" wx:key="item">{{item}}</text>
+        </view>
+       <!--  <view class='description'>{{item.description}}</view> -->
+        <view class='section_info'>
+         <text class="info section__pv">{{item.pv}}次浏览  {{item.collection}}人收藏  <text wx:if="{{item.support}}">{{item.support}}人支持</text></text>
+         <!--  <text class="info section__collect">{{item.collect}}人收藏</text> -->
+          </view>
+      </view>
+      </navigator>
+    </block>
+</scroll-view>

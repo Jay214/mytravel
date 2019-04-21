@@ -1,0 +1,44 @@
+/* components/list/list.wxss */
+.section_gap{
+  clear: both;
+  overflow: hidden;
+  padding: 20rpx;
+  border-bottom: 1px solid rgb(185, 184, 184);
+}
+.section_img{
+  border-radius: 10px;
+}
+.section__ctn{
+  float: left;
+}
+.section_text{
+  overflow: auto;
+  position: relative;
+  padding-left: 20rpx;
+  height: 90px;
+}
+.section__title{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient: vertical;
+}
+.section__title .tag{
+  white-space: nowrap;
+   display: inline;
+}
+.section_info{
+  position: absolute;
+  bottom: 10rpx;
+  font-size: 12px;
+  color: grey;
+}
+.tag{
+  background: #5bce5a;
+  font-size: 30rpx;
+  color: white;
+  border-radius: 3px;
+  padding: 3px;
+  margin: 4px;
+}

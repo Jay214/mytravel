@@ -1,0 +1,50 @@
+<!--pages/publish/publish.wxml-->
+
+<!--   <view class='nav' style='height:{{navH}}px'>
+    <view class='nav-title iconfont icon-fanhui' bindtap='navBack'>
+      
+      <text mode='aspectFit' class='back ' bindtap='navBack'></text> 
+    </view>
+  </view> -->
+  <scroll-view class='bg-gray overflow' scroll-y >
+    <view class='hidden'>
+      <!-- 正文 -->
+      <view class='container'>
+<view class="section input">
+ <textarea bindblur="bindTitleAreaBlur" class='head' placeholder="描述你的问题" maxlength="100" auto-focus auto-height/>
+  <textarea bindblur="bindTextAreaBlur" class='content' maxlength="-1" placeholder="为你的问题添加更详细的描述，会让更多的人为你解答哦"/>
+</view>
+<view class='section'>
+
+
+  <picker
+    mode="region"
+    bindchange="bindRegionChange"
+    value="{{region}}"
+    custom-item="{{customItem}}"
+  >
+    <view class="class='tag position iconfont icon-location'">
+    关联地：  {{region[0]}} {{region[1]}}
+    </view>
+  </picker>
+
+  </view>
+  <view class='section showTag iconfont icon-weixin' bindtap='showTag'>
+    选择标签
+  </view>
+<view class="section">
+    <button class='send' bindtap='bindSubmit' type='primary'>发布</button>
+</view>
+</view>
+
+    </view>
+  </scroll-view>
+<view class='modal' hidden='{{hide}}' catchtap='hideTag'>
+  <view class='box'>
+    <tag tags="{{tags}}" bindswitchTag="switchTag"></tag>
+    <button class='comfirm' type='primary' catchtap='hideTag'>确认</button>
+  </view>
+</view>
+
+
+

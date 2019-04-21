@@ -1,0 +1,10 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#5bce5a",
+  "backgroundColor": "#5bce5a",
+  "navigationBarTitleText": "发布问题",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "tag": "/components/mutiltag/tag"
+  }
+}

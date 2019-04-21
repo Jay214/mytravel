@@ -1,0 +1,79 @@
+<!--pages/publish/publish.wxml-->
+
+  <view class='nav' style='height:{{navH}}px'>
+    <view class='nav-title iconfont icon-fanhui' bindtap='navBack'>
+      
+     <!--  <text mode='aspectFit' class='back ' bindtap='navBack'></text> --> 
+    </view>
+  </view>
+  <scroll-view class='bg-gray overflow' style='height:calc(100vh - {{navH}}px)' scroll-y >
+    <view class='hidden'>
+      <!-- 正文 -->
+      <view class='container'>
+<view class="section">
+ <textarea bindblur="bindTitleAreaBlur" class='head' placeholder="标题" maxlength="100" auto-focus auto-height/>
+  <textarea bindblur="bindTextAreaBlur" class='content' maxlength="-1" placeholder="分享你的心情和故事吧~"/>
+</view>
+<view class="section publish">
+  <image class='section_img' wx:for="{{src}}" wx:for-item="item" wx:key="{{item}}" src="{{item}}"></image>
+ <!--  <image class='section_img' src="{{src}}"></image>
+  <image class='section_img' src="{{src}}"></image> -->
+    <button class='add' bindtap='upload' hidden='{{full}}'>+</button>
+</view>
+<view class='section'>
+
+<view class='time tag'>
+   <picker
+    mode="date"
+    value="{{date}}"
+    start="2010-09-01"
+    end="{{end}}"
+    bindchange="bindDateChange"
+  >
+  <view class='iconfont icon-shijian'>
+  发表于：{{date}}
+  </view>
+  </picker>
+  </view>
+
+
+  <picker
+    mode="region"
+    bindchange="bindRegionChange"
+    value="{{region}}"
+    custom-item="{{customItem}}"
+  >
+    <view class="class='tag position iconfont icon-location'">
+    诞生地：  {{region[0]}} {{region[1]}} {{region[2]}} 
+    </view>
+  </picker>
+  
+  <view class='type tag'>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{type}}">
+    <view class="picker iconfont icon-17">
+    类型：    {{type[index]}}
+    </view>
+  </picker>
+   <!-- {{type[index]}} -->
+  </view>
+
+  </view>
+  <view class='section showTag iconfont icon-weixin' bindtap='showTag'>
+    选择标签
+  </view>
+<view class="section">
+    <button class='send' bindtap='bindSubmit' type='primary'>发布</button>
+</view>
+</view>
+
+    </view>
+  </scroll-view>
+<view class='modal' hidden='{{hide}}' catchtap='hideTag'>
+  <view class='box'>
+    <tag tags="{{tags}}" bindswitchTag="switchTag"></tag>
+    <button class='comfirm' type='primary' catchtap='hideTag'>确认</button>
+  </view>
+</view>
+
+
+

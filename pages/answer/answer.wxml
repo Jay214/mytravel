@@ -1,0 +1,60 @@
+<!--pages/answer/answer.wxml-->
+<view class='container'>
+  <view class='content'>
+    <view class='title'>{{item.title}}</view>
+    <view class='title description'>{{item.content}}</view>
+    <view class='info'>
+    {{item.pv}}次浏览   发表于{{item.moment}}
+     <text wx:if="{{item.uid==userId}}" bindtap='onDelete' class='delete'>删除</text>
+    </view>
+  </view>
+
+   <view class='author'>
+   <image src="{{item.avator}}"></image><text>{{item.user}}</text><text class='address iconfont icon-location'>{{item.address}}</text>
+   </view>
+
+  {{item.answer}}条回答
+  <view class='answer' wx:for="{{answers}}" wx:for-item="item" wx:key="{{item}}">
+    <view class='user msg'>
+      <image src="{{item.avator}}"></image>
+      <view class='username'> {{item.username}}</view>
+    </view>
+    <view class='answer_content'>{{item.content}}</view>
+    <view class='msg'>
+     {{item.moment}}
+     <view class="zan iconfont {{item.is_support ? 'icon-dianzan': 'icon-like'}}"
+      id="{{item.id}}"
+      data-support='{{item.is_support}}'
+      bindtap='onSupport'>
+       {{item.support}}
+       </view>
+    </view>
+  </view>
+
+</view>
+
+<view class='tips'>
+<view class='tab'>
+<view class='inner'>
+<input bindfocus="replyFocus"
+       bindinput='replyInput'
+       bindblur="replyBlur"
+       type='text'
+       confirm-type="done"
+       placeholder='给出你的回答'
+       value="{{content}}"
+       class='reply'/>
+</view>
+</view>
+<view class='tab'  hidden='{{show}}'>
+<view class='inner'>
+<text class='send' bindtap='onSend'>发送</text>
+</view>
+</view>
+<view class='tab' hidden='{{!show}}'>
+<view class='inner'><text class="iconfont icon-shoucang{{item.is_collect ? 1:''}}" bindtap='onCollect'></text> {{item.collection}}</view>
+</view>
+<view class='tab' hidden='{{!show}}'>
+  <button open-type='share' type='primary' class='inner share iconfont icon-fabu'> 分享</button> 
+</view>
+</view>

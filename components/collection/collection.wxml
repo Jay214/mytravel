@@ -1,0 +1,10 @@
+<!--components/collection/collection.wxml-->
+<!-- 这是自定义组件的内部WXML结构 -->
+<!-- <view class="inner {{ currentTab==id ? active : '' }}" bindtap="switchTab">
+  {{innerText}}
+</view> -->
+<view bindtap="switchTab" class='collection'>
+ <view wx:for="{{innerTexts}}" wx:key="idx" wx:for-item="item" id="{{item.id}}" class="inner {{ currentTab==item.id ? 'active' : '' }}">
+ {{item.name}}
+ </view>
+</view>

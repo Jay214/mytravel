@@ -1,0 +1,44 @@
+/**index.wxss**/
+.aim{
+  position: relative;
+  padding-bottom: 40rpx;
+  font-size: 48rpx;
+  background: #5bce5a;
+  color: whitesmoke;
+}
+.ask{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  background: #0b5c09;
+  width: 140rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  border-radius: 70rpx;
+  font-size: 30rpx;
+}
+.find{
+  width: 80%;
+  height: 65rpx;
+  border-radius: 65rpx;
+  background: white;
+  margin: 0 auto 16rpx auto;
+  padding-left: 20rpx;
+  font-size: 30rpx;
+  color: black;
+}
+.picker{
+  padding-left: 10rpx;
+  position: relative;
+}
+.picker::after{
+  content: " ";
+  font-size: 48rpx;
+  width: 0;
+  height: 0;
+  border: 12rpx solid transparent;
+  border-top: 12rpx solid whitesmoke;
+  position: absolute;
+  top: 50%;
+}

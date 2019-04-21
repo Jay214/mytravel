@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "collection": "/components/collection/collection",
+    "lists": "/components/list/list",
+    "post-list": "/components/postList/list",
+    "tag": "/components/tag/tag",
+    "dialog": "/components/dialog/dialog"
+  }
+}

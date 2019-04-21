@@ -1,0 +1,24 @@
+<!--components/list/list.wxml-->
+<scroll-view>
+  <!--  <view class="section section_gap" wx:for="{{lists}}" wx:for-item="item" wx:key="item.pv"> -->
+    <navigator class="section section_gap" wx:for="{{lists}}" wx:for-item="item" wx:key="item.title" url="/pages/sight/sight?url={{item.href}}&title={{item.title}}&tag={{currentTab}}">
+      <view class="section__ctn">
+        <image
+          class='section_img'
+          style="width: 110px; height: 80px; background-color: #eeeeee;"
+          mode="scaleToFill"
+          src="{{item.src}}"
+          binderror="imgErr"
+        ></image>
+      </view>
+      <view class='section_text'>
+        <view class="section__title">{{item.title}}</view>
+        <view class='description'>{{item.description}}</view>
+        <view class='section_info'>
+         <text class="info section__pv">{{item.pv}}  {{item.collect}}</text>
+         <!--  <text class="info section__collect">{{item.collect}}人收藏</text> -->
+          </view>
+      </view>
+      </navigator>
+   <!--  </view> -->
+</scroll-view>

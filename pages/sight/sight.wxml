@@ -1,0 +1,44 @@
+<!--pages/sight/sight.wxml-->
+<view class='container'>
+  <view class='addr'>{{addr}}</view>
+
+  <swiper
+  indicator-dots="true"
+  autoplay="true"
+  class='swiper'
+>
+  <block wx:for="{{imgUrls}}" wx:key="{{item}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150" />
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class='sight_description'>
+<view  wx:if="{{!!bright}}">
+  <view class='sign'>简介</view>
+  <view class='bright'>亮点{{bright}}</view>
+</view>
+  <view class='desc_all'>
+  <view class='title'>{{type==0 ? '景':'地'}}点介绍</view>
+  <view class='text'>{{description}}</view>
+  <view wx:if="{{!!detailcon}}" class='detailcon'>特别提示：
+    <view class='detailcon_text'>{{detailcon}}</view>
+  </view>
+  </view>
+
+  <view class='tip'><text class='iconfont icon-location'></text>  {{s_sight_addr}}</view>
+  <view class='tip'><text class='iconfont icon-shijian'></text>  {{s_sight_in_list}}</view>
+  <view class='tip' wx:if="{{!!traffic}}"><text class='iconfont icon-jiaotong'></text>  交通：{{traffic}}</view>
+</view>
+<!-- <button open-type='share' type='primary' class='share iconfont icon-fabu'> 分享</button> -->
+</view>
+
+<view class='tips'>
+<view class='tab'>
+<view class='inner'><text class='iconfont icon-shoucang'></text> 收藏</view>
+</view>
+<view class='tab'>
+  <button open-type='share' type='primary' class='inner share iconfont icon-fabu'> 分享</button> 
+</view>
+</view>

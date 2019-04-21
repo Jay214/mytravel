@@ -1,0 +1,41 @@
+<!--index.wxml-->
+<dialog id='dialog' 
+      title='登录提示' 
+      content='小程序需要您的授权才能提供更好的服务哦' 
+      confirmText='知道了'
+      bind:bindGetUserInfo='bindGetUserInfo'>
+</dialog>
+<view class='aim'>
+<input class='find' type='search' placeholder='搜索你想看的~'/>
+ <!--  <picker
+    mode="region"
+    bindchange="bindRegionChange"
+    value="{{region}}"
+  >
+    <view class="picker">
+      {{region[0]}}.{{region[1]}}.{{region[2]}} 
+    </view>
+  </picker> -->
+
+<picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view class="picker">
+{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
+    </view>
+  </picker>
+
+  <navigator url='/pages/ask/publish?province={{multiArray[0][multiIndex[0]]}}&city={{multiArray[1][multiIndex[1]]}}' class='ask'>去提问</navigator>
+ </view>
+
+  <!-- 地区选择器 -->
+<view class="container">
+ 
+  <!-- 景点信息栏 -->
+  <view>
+   <collection innerTexts="{{innerTexts}}" bindonTab="getCollectList"></collection>
+   <tag id="tag" tags="{{tags}}" bindswitchTag="switchTag"></tag>
+   
+   <lists wx:if="{{type==0}}" lists="{{lists}}" currentTab="{{tag}}"></lists>
+   <post-list wx:if="{{type!=0}}" lists="{{lists}}" currentTab="{{tag}}"></post-list>
+  </view>
+  
+</view>

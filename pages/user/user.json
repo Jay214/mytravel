@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "dialog": "/components/dialog/dialog",
+    "collection": "/components/collection/collection",
+    "selfLists": "/components/selfList/list",
+    "collectLists": "/components/postList/list"
+  }
+}

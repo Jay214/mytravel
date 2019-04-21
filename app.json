@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/user",
+    "components/collection/collection",
+    "components/list/list",
+    "pages/publish/publish",
+    "pages/sight/sight",
+    "pages/answer/answer",
+    "pages/post/post"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#5bce5a",
+    "backgroundColor": "#5bce5a",
+    "navigationBarTitleText": "旅游攻略",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./img/icon/home1.png",
+        "selectedIconPath": "./img/icon/home.png"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "text": "发布",
+        "iconPath": "./img/icon/publish.png",
+        "selectedIconPath": "./img/icon/publish.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "./img/icon/user.png",
+        "selectedIconPath": "./img/icon/user1.png"
+      }
+    ],
+    "color": "black"
+  }
+}

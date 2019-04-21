@@ -1,0 +1,9 @@
+<!--components/tag/tag.wxml-->
+<view catchtap='switchTab'>
+  <button wx:for="{{tags}}"
+   wx:for-item="item"
+    wx:key="item.name"
+     class="tag {{ item.choosed ? 'active' : '' }}"
+     id="{{item.id}}"
+     >{{item.name}}</button>
+</view>

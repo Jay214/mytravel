@@ -1,0 +1,61 @@
+<!--pages/post/post.wxml-->
+<view class='container'>
+  <view class='title qu'>{{item.title}} <text class='tag' wx:for="{{item.tag}}" wx:for-item="item" wx:key="item">{{item}}</text></view>
+  <view class='info'>
+    <view class='update'>发表于{{item.moment}} . {{item.pv}}次浏览   {{item.support}}
+    <text class="support iconfont {{item.is_support ? 'icon-dianzan': 'icon-like'}}" bindtap='onSupport'></text>
+    <text wx:if="{{item.uid==userId}}" bindtap='onDelete' class='delete'>删除</text>
+    </view>
+    <view class='author'><image src="{{item.avator}}"></image><text>{{item.user}}</text><text class='address iconfont icon-location'>{{item.address}}</text></view>
+  </view>
+
+  <swiper
+  indicator-dots="true"
+  autoplay="true"
+  class='swiper'
+   wx:if="{{item.imgs}}
+>
+  <block wx:for="{{item.imgs}}" wx:key="{{item}}">
+    <swiper-item>
+      <image src="{{item.url}}" class="slide-image" width="355" height="150" />
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class='content'>{{item.content}}</view>
+<view class='comments'>
+  <view class='all'>共{{item.comment}}条评论</view>
+
+   <view class='answer' wx:for="{{comments}}" wx:for-item="item" wx:key="{{item}}">
+    <view class='user msg'>
+      <image src="/img/icon/user.png"></image>
+      <view class='username'>匿名用户</view>
+    </view>
+    <view class='answer_content'>{{comments.content}}</view>
+    <view class='msg'>
+    {{item.support}}  {{item.moment}}
+    </view>
+  </view>
+
+</view>
+</view>
+
+
+<view class='tips'>
+<view class='tab'>
+<view class='inner'>
+<input bindfocus="replyFocus" bindblur="replyBlur" type='text' confirm-type="done" placeholder='快来评论吧~' class='reply'/>
+</view>
+</view>
+<view class='tab'  hidden='{{show}}'>
+<view class='inner' bindtap='onSend'>
+<text class='send'>发送</text>
+</view>
+</view>
+<view class='tab' hidden='{{!show}}'>
+<view class='inner' bindtap='onCollect'><text class="iconfont icon-shoucang{{item.is_collect ? 1:''}}"></text> {{item.collection}}</view>
+</view>
+<view class='tab' hidden='{{!show}}'>
+  <button open-type='share' type='primary' class='inner share iconfont icon-fabu'>分享</button> 
+</view>
+</view>

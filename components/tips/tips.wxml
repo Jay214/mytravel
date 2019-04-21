@@ -1,0 +1,11 @@
+<!--components/tips/tips.wxml-->
+<view class='tips'>
+<slot></slot>
+<view class='tab'>
+  
+</view>
+<view class='tab'>
+ <!--  <slot name="second" class='share'></slot> -->
+  <!-- <button open-type='share' type='primary' class='share'><text class='iconfont icon-fabu'></text> 分享</button> -->
+</view>
+</view>
