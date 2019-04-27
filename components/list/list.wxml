@@ -1,7 +1,7 @@
 <!--components/list/list.wxml-->
 <scroll-view>
   <!--  <view class="section section_gap" wx:for="{{lists}}" wx:for-item="item" wx:key="item.pv"> -->
-    <navigator class="section section_gap" wx:for="{{lists}}" wx:for-item="item" wx:key="item.title" url="/pages/sight/sight?url={{item.href}}&title={{item.title}}&tag={{currentTab}}">
+    <navigator class="section section_gap" wx:for="{{lists}}" wx:for-item="item" wx:key="item.title" url="/pages/sight/sight?url={{item.href}}&title={{item.title}}&tag={{currentTab}}&&flag={{item.flag}}">
       <view class="section__ctn">
         <image
           class='section_img'

@@ -35,7 +35,8 @@
   color: grey;
 }
 .tag{
-  background: #5bce5a;
+ /*  background: #5bce5a; */
+ background: #3c8dbc;
   font-size: 30rpx;
   color: white;
   border-radius: 3px;

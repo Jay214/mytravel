@@ -15,7 +15,7 @@
         ></image>
       </view>
       <view class='section_text'>
-        <view class="section__title">{{item.title}}
+        <view class="section__title"><text class='type'>{{item.type===0 ? '游记': '攻略'}} </text>. {{item.title}}
           <text class='tag' wx:for="{{item.tag}}" wx:for-item="item" wx:key="item">{{item}}</text>
         </view>
        <!--  <view class='description'>{{item.description}}</view> -->
@@ -37,7 +37,7 @@
         ></image>
       </view> -->
       <view class='section_text'>
-        <view class="section__title">{{item.title}}
+        <view class="section__title"><text class='type'>问答 </text>. {{item.title}}
           <text class='tag' wx:for="{{item.tag}}" wx:for-item="item" wx:key="item">{{item}}</text>
         </view>
        <!--  <view class='description'>{{item.description}}</view> -->

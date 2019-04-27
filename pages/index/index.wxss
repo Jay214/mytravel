@@ -3,14 +3,16 @@
   position: relative;
   padding-bottom: 40rpx;
   font-size: 48rpx;
-  background: #5bce5a;
+ /*  background: #5bce5a; */
+  background: #75adff;
   color: whitesmoke;
 }
 .ask{
   position: absolute;
   right: 10px;
   top: 50%;
-  background: #0b5c09;
+  /* background: #0b5c09; */
+  background: rgba(0, 0, 0, 0.5);
   width: 140rpx;
   height: 70rpx;
   line-height: 70rpx;

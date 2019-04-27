@@ -11,8 +11,8 @@
       <!-- 正文 -->
       <view class='container'>
 <view class="section">
- <textarea bindblur="bindTitleAreaBlur" class='head' placeholder="标题" maxlength="100" auto-focus auto-height/>
-  <textarea bindblur="bindTextAreaBlur" class='content' maxlength="-1" placeholder="分享你的心情和故事吧~"/>
+ <textarea bindblur="bindTitleAreaBlur" value="{{head}}" class='head' placeholder="标题" maxlength="100" auto-focus auto-height/>
+  <textarea bindblur="bindTextAreaBlur" value="{{content}}" class='content' maxlength="-1" placeholder="分享你的心情和故事吧~"/>
 </view>
 <view class="section publish">
   <image class='section_img' wx:for="{{src}}" wx:for-item="item" wx:key="{{item}}" src="{{item}}"></image>
@@ -62,7 +62,7 @@
     选择标签
   </view>
 <view class="section">
-    <button class='send' bindtap='bindSubmit' type='primary'>发布</button>
+    <button class='send' bindtap='bindSubmit'>发布</button>
 </view>
 </view>
 
@@ -71,7 +71,7 @@
 <view class='modal' hidden='{{hide}}' catchtap='hideTag'>
   <view class='box'>
     <tag tags="{{tags}}" bindswitchTag="switchTag"></tag>
-    <button class='comfirm' type='primary' catchtap='hideTag'>确认</button>
+    <button class='comfirm' catchtap='hideTag'>确认</button>
   </view>
 </view>
 

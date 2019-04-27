@@ -1,0 +1,22 @@
+<!--pages/search/search.wxml-->
+<view class='container'>
+  <view class='search_box'>
+    <input class='find' type='search' bindconfirm='onSearch' placeholder='搜索你想看的~'/>
+    <text class='cancel' bindtap='onCancel'>取消</text>
+  </view>
+
+  <view class='history'>
+    <view class='trigger'>
+       <text>历史搜索</text><text class='delete iconfont icon-shoucang'></text>
+    </view>
+    <view class='item'>
+    <text wx:for="{{history}}" wx:for-item="item" wx:key="{{item}}">{{item}}</text>
+    </view>
+  </view>
+
+</view>
+<view class='modal' hidden='{{hide}}' catchtap='hideTag'>
+ 
+    <view wx:for="{{citys}}" class='city' wx:for-item="{{item}}">dssd{{item.code}}</view>
+
+</view>

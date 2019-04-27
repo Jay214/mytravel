@@ -55,6 +55,6 @@
 <view class='inner'><text class="iconfont icon-shoucang{{item.is_collect ? 1:''}}" bindtap='onCollect'></text> {{item.collection}}</view>
 </view>
 <view class='tab' hidden='{{!show}}'>
-  <button open-type='share' type='primary' class='inner share iconfont icon-fabu'> 分享</button> 
+  <button open-type='share' class='inner share iconfont icon-fabu'> 分享</button> 
 </view>
 </view>

@@ -49,11 +49,11 @@ Page({
    */
   onLoad: function (options) {
     that = this;
-    console.log(options.tag)
+    console.log(options)
     wx.setNavigationBarTitle({
       title: options.title
     })
-    util.request.get('/getSightDetail', { url: options.url, type: options.tag})
+    util.request.get('/getSightDetail', { url: options.url, type: options.tag, flag: options.flag })
       .then(res => {
         const { img, s_sight_addr, s_sight_in_list, description, detailcon, bright, traffic } = res.data.data
         that.setData({

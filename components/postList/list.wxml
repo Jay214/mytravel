@@ -2,7 +2,7 @@
 <scroll-view>
  
  <block wx:if="{{lists[0].type===0||lists[0].type==1}}">
-    <navigator class="section section_gap" wx:for="{{lists}}" wx:for-item="item" wx:key="item.title" url="/pages/post/post?&title={{item.title}}&id={{item.id}}&uid={{item.uid}}&type={{item.type}}">
+    <navigator class="section section_gap" wx:for="{{lists}}" wx:for-item="item" wx:key="item.title" url="/pages/post/post?id={{item.id}}&uid={{item.uid}}&type={{item.type}}&title={{item.title}}">
       <view class="section__ctn"  wx:if="{{item.img}}">
         <image
           class='section_img'
@@ -25,7 +25,7 @@
       </navigator>
 </block>
     <block wx:else>
-       <navigator class="section section_gap" wx:for="{{lists}}" wx:for-item="item" wx:key="item.title" url="/pages/answer/answer?&title={{item.title}}&id={{item.id}}&uid={{item.uid}}&type={{item.type}}">
+       <navigator class="section section_gap" wx:for="{{lists}}" wx:for-item="item" wx:key="item.title" url="/pages/answer/answer?id={{item.id}}&uid={{item.uid}}&type={{item.type}}&title={{item.title}}">
     <!--   <view class="section__ctn"  wx:if="{{item.img}}">
         <image
           class='section_img'

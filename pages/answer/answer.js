@@ -80,9 +80,9 @@ Page({
       const uid = app.globalData.id;
       const qid = that.data.item.id;
       const moment = util.formatTime(new Date)
-      util.request.post('/comment', { uid, content, qid, moment, to_uid: 0 })
+      util.request.post('/comment', { uid, content, qid, moment, to_uid: 0,flag:0 })
         .then(res => {
-          util.request.get('/getComments', { qid: qid, ownid: app.globalData.id })
+          util.request.get('/getComments', { qid: qid, ownid: app.globalData.id,flag:0 })
             .then(res => {
               let item = that.data.item
               item.answer = item.answer+1
@@ -134,7 +134,7 @@ Page({
     util.request.get('/deletePost', { id: that.data.item.id, flag: 2 })
       .then(res => {
         wx.reLaunch({
-          url: getCurrentPages()[0].route+'',
+          url:'../index/index',
         })
       })
   },

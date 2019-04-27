@@ -11,13 +11,18 @@ Page({
   data: {
     item:{},
     show: true,
-    userId: 0
+    userId: 0,
+    content: '',
+    answers:[]
   },
   replyFocus(e) {
     this.setData({ show: false })
   },
   replyBlur(e) {
     this.setData({ show: true })
+  },
+  replyInput(e) {
+    that.setData({ content: e.detail.value })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -34,6 +39,12 @@ Page({
           userId: app.globalData.id
         })
       })
+    util.request.get('/getComments', { qid: id, ownid: app.globalData.id,flag:1 })
+      .then(res => {
+        that.setData({ answers: res.data.data })
+      }).catch(e => {
+        console.log('err: ', e)
+      })
   },
   onCollect(){
     let { is_collect, id,type } = that.data.item;
@@ -49,7 +60,7 @@ Page({
         that.setData({ item: that.data.item })
         })
       .catch(err => { wx.showToast({
-        title: '出bug啦',
+        title: '更新收藏失败',
         duration: 1500
       })})
   },
@@ -72,17 +83,57 @@ Page({
         })
       })
   },
-  onSend(){
-
+  onSend() {
+    const content = that.data.content
+    if (content.length > 0) {
+      const uid = app.globalData.id;
+      const qid = that.data.item.id;
+      const moment = util.formatTime(new Date)
+      util.request.post('/comment', { uid, content, qid, moment, to_uid: 0, flag: 1 })
+        .then(res => {
+          util.request.get('/getComments', { qid: qid, ownid: app.globalData.id,flag:1 })
+            .then(res => {
+              let item = that.data.item
+              item.comments = item.comments + 1
+              that.setData({ answers: res.data.data, item: item, content: '' })
+              wx.showToast({
+                title: '发表成功',
+                duration: 1500
+              })
+            }).catch(e => {
+              console.log('err: ', e)
+            })
+        }).catch(e => {
+          console.error("err: ", e)
+          wx.showToast({
+            title: '发表失败',
+            icon: 'none',
+            duration: 2000
+          })
+        })
+    } else {
+      wx.showToast({
+        title: '不能发送空内容',
+        icon: 'none',
+        duration: 2000
+      })
+    }
   },
   onDelete(){
-    util.request.get('/deletePost', { id: that.data.item.id , flag: 1 })
-      .then(res => {
-        const url = (getCurrentPages()[0].route).replace('pages', '..')
-        wx.reLaunch({
-          url: url
-        })
-      })
+    wx.showActionSheet({
+      itemList: ['删除'],
+      itemColor: '#DD4F43',
+      success(res) {
+        util.request.get('/deletePost', { id: that.data.item.id, flag: 1 })
+          .then(res => {
+            const url = (getCurrentPages()[0].route).replace('pages', '..')
+            wx.reLaunch({
+              url: '../index/index'
+            })
+          })
+      }
+    });
+   
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

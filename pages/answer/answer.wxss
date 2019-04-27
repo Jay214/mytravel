@@ -4,7 +4,8 @@
 }
 .content{
   padding: 40rpx 20rpx;
-  background: #5bce5a;
+  /* background: #5bce5a; */
+  background: #3c8dbc;
   color: white;
   border-radius: 5px;
   margin-bottom: 28rpx;
@@ -35,10 +36,6 @@
 }
 .info{
   font-size: 24rpx;
-}
-.delete{
-  float: right;
-  color: rgb(88, 88, 248);
 }
 .user{
   display: flex;
@@ -96,6 +93,8 @@
   width: 140rpx;
   line-height: 70rpx;
   padding: 0;
+  background: #75adff;
+  color: white;
 }
 .reply{
   background: rgb(233, 232, 232);
@@ -104,4 +103,9 @@
   margin: 0 10rpx;
   padding:0 5px;
   text-align: left;
+}
+.delete{
+  float: right;
+  color: white;
+  text-shadow: 0 0 5px black;
 }

@@ -39,6 +39,6 @@
 <view class='inner'><text class='iconfont icon-shoucang'></text> 收藏</view>
 </view>
 <view class='tab'>
-  <button open-type='share' type='primary' class='inner share iconfont icon-fabu'> 分享</button> 
+  <button open-type='share' class='inner share iconfont icon-fabu'> 分享</button> 
 </view>
 </view>

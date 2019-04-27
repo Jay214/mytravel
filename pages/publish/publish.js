@@ -29,7 +29,9 @@ Page({
       ],
       val: '',
       title: '',
-      test: ''
+      test: '',
+      head:'',
+      content:''
   },
   bindButtonTap() {
     that.setData({
@@ -112,7 +114,7 @@ Page({
     setTimeout(() => {
       let data = that.data
       console.log(data.val.length, data.title.length)
-      if (data.val.length<=0&&data.title.length<=0) {
+      if (data.val.length<=0||data.title.length<=0) {
         wx.showToast({
           title: '不能发表空内容',
           duration: 2000,
@@ -138,13 +140,26 @@ Page({
             //that.uploadDIY(data.src,i,len,postId)
             for(let i = 0,len = data.src.length;i<len;i++){
                 wx.uploadFile({
-                  url: 'http://10.200.116.44/upload',
+                  url: 'http://localhost/upload',
                   filePath: data.src[i],
                   name: `img`,
                   formData: {
-                    postId: res.data
+                    postId: res.data.res,
+                    i:i
                   },
                   success(res) {
+                    if(i==len-1){
+                      wx.showToast({
+                        title: '发表成功',
+                        icon: 'success'
+                      })
+                      that.setData({
+                        head:'',
+                        content:'',
+                        src:[]
+                      })
+                     
+                    }
                     console.log(res)
                   }
                 })                                
@@ -152,15 +167,6 @@ Page({
           }).catch(err => {
             console.error(err)
           })
-            /* wx.showToast({
-              title: '发表成功',
-              duration: 15000,
-              success: () => {
-                wx.reLaunch({
-                  url: '../index/index',
-                })
-              }
-            })  */
       }
     },0)
   },
@@ -215,6 +221,10 @@ Page({
   onShow: function () {
     wx.hideTabBar({
 
+    })
+    const region = wx.getStorageSync('region')
+    that.setData({
+      region: region
     })
   },
 

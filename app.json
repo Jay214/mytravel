@@ -7,7 +7,10 @@
     "pages/publish/publish",
     "pages/sight/sight",
     "pages/answer/answer",
-    "pages/post/post"
+    "pages/post/post",
+    "pages/search/search",
+    "pages/find/index",
+    "pages/login/login"
   ],
   "permission": {
     "scope.userLocation": {
@@ -16,8 +19,8 @@
   },
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#5bce5a",
-    "backgroundColor": "#5bce5a",
+    "navigationBarBackgroundColor": "#75adff",
+    "backgroundColor": "#75adff",
     "navigationBarTitleText": "旅游攻略",
     "navigationBarTextStyle": "white"
   },
@@ -42,6 +45,8 @@
         "selectedIconPath": "./img/icon/user1.png"
       }
     ],
-    "color": "black"
-  }
+    "color": "black",
+    "selectedColor": "#75adff"
+  },
+  "sitemapLocation": "sitemap.json"
 }

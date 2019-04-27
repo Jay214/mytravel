@@ -1,0 +1,76 @@
+/* pages/search/search.wxss */
+.search_box{
+  display: flex;
+  align-items: center;
+}
+.find{
+  flex: 1;
+  height: 65rpx;
+  border-radius: 65rpx;
+  background: rgb(233, 230, 230);
+ /*  margin: 0 auto 16rpx auto; */
+  padding-left: 20rpx;
+  margin-right: 20rpx;
+  font-size: 30rpx;
+  color: black;
+}
+.cancel{
+  color: gray;
+  font-size: 30rpx;
+}
+.trigger{
+  margin: 30rpx 0;
+  font-size: 28rpx;
+}
+.trigger text:nth-child(1){
+  float: left;
+}
+.trigger text:nth-child(2){
+  float: right;
+}
+.item text{
+  float: left;
+  padding: 20rpx;
+  height: 60rpx;
+  border-radius: 60rpx;
+  background: rgb(233, 230, 230);
+  margin: 20rpx;
+  font-size: 30rpx;
+}
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+.comfirm{
+  width: 200rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 34rpx;
+  padding: 0;
+  display: block;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 26rpx;
+  background: #75adff;
+  color: white;
+}
+.showTag{
+  margin-bottom: 60px;
+  border: 1px dashed #aaa;
+  border-radius: 3px;
+  width: 180rpx;
+  text-align: center;
+  display: inline-block;
+  padding: 6rpx 16rpx;
+}
+.city{
+  height: 60rpx;
+  border-radius: 60rpx;
+  color: red;
+}

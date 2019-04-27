@@ -14,10 +14,14 @@
 }
 .bright{
   font-size: 34rpx;
-  background: rgb(151, 253, 185);
+  /* background: rgb(151, 253, 185); */
+  background: #e287a7;
+  color: white;
   padding: 30rpx;
   margin: 20rpx;
   position: relative;
+  border-radius: 5px;
+  border-top-left-radius: 0;
 }
 .bright::after{
   content: "";
@@ -81,6 +85,8 @@
   width: 140rpx;
   line-height: 70rpx;
   padding: 0;
+  background: #75adff;
+  color: white;
 }
 .desc_all{
   line-height: 50rpx;

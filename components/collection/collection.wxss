@@ -14,5 +14,6 @@
   border-bottom: 3px solid #fff;
 }
 .active{
-  border-bottom:3px solid #1aad16;
+/*   border-bottom:3px solid #1aad16; */
+  border-bottom:3px solid #75adff;
 }

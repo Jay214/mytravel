@@ -13,7 +13,7 @@
   indicator-dots="true"
   autoplay="true"
   class='swiper'
-   wx:if="{{item.imgs}}
+   wx:if="{{item.imgs.length>0}}
 >
   <block wx:for="{{item.imgs}}" wx:key="{{item}}">
     <swiper-item>
@@ -24,9 +24,9 @@
 
 <view class='content'>{{item.content}}</view>
 <view class='comments'>
-  <view class='all'>共{{item.comment}}条评论</view>
+  <view class='all'>共{{item.comments}}条评论</view>
 
-   <view class='answer' wx:for="{{comments}}" wx:for-item="item" wx:key="{{item}}">
+   <!-- <view class='answer' wx:for="{{comments}}" wx:for-item="item" wx:key="{{item}}">
     <view class='user msg'>
       <image src="/img/icon/user.png"></image>
       <view class='username'>匿名用户</view>
@@ -35,7 +35,24 @@
     <view class='msg'>
     {{item.support}}  {{item.moment}}
     </view>
+  </view> -->
+    <view class='answer' wx:for="{{answers}}" wx:for-item="item" wx:key="{{item}}">
+    <view class='user msg'>
+      <image src="{{item.avator}}"></image>
+      <view class='username'> {{item.username}}</view>
+    </view>
+    <view class='answer_content'>{{item.content}}</view>
+    <view class='msg'>
+     {{item.moment}}
+    <!--  <view class="zan iconfont {{item.is_support ? 'icon-dianzan': 'icon-like'}}"
+      id="{{item.id}}"
+      data-support='{{item.is_support}}'
+      bindtap='onSupport'>
+       {{item.support}}
+       </view> -->
+    </view>
   </view>
+
 
 </view>
 </view>
@@ -44,7 +61,14 @@
 <view class='tips'>
 <view class='tab'>
 <view class='inner'>
-<input bindfocus="replyFocus" bindblur="replyBlur" type='text' confirm-type="done" placeholder='快来评论吧~' class='reply'/>
+<input bindfocus="replyFocus"
+       bindblur="replyBlur"
+       bindinput='replyInput'
+       type='text'
+       confirm-type="done"
+       placeholder='快来评论吧~'
+       value="{{content}}"
+       class='reply'/>
 </view>
 </view>
 <view class='tab'  hidden='{{show}}'>
@@ -56,6 +80,6 @@
 <view class='inner' bindtap='onCollect'><text class="iconfont icon-shoucang{{item.is_collect ? 1:''}}"></text> {{item.collection}}</view>
 </view>
 <view class='tab' hidden='{{!show}}'>
-  <button open-type='share' type='primary' class='inner share iconfont icon-fabu'>分享</button> 
+  <button open-type='share' class='inner share iconfont icon-fabu'>分享</button> 
 </view>
 </view>

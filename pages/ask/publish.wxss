@@ -82,6 +82,8 @@
   position: fixed;
   left: 50%;
   bottom: 30rpx;
+  background: #75adff;
+  color: white;
 }
 .modal{
   position: fixed;
@@ -110,6 +112,8 @@
   margin-left: 50%;
   transform: translateX(-50%);
   margin-top: 26rpx;
+  background: #75adff;
+  color: white;
 }
 .showTag{
   margin-bottom: 60px;

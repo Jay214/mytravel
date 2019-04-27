@@ -6,7 +6,7 @@
       bind:bindGetUserInfo='bindGetUserInfo'>
 </dialog>
 <view class='aim'>
-<input class='find' type='search' placeholder='搜索你想看的~'/>
+<input class='find' type='search' bindfocus='onSearch' placeholder='搜索你想看的~'/>
  <!--  <picker
     mode="region"
     bindchange="bindRegionChange"
@@ -23,7 +23,7 @@
     </view>
   </picker>
 
-  <navigator url='/pages/ask/publish?province={{multiArray[0][multiIndex[0]]}}&city={{multiArray[1][multiIndex[1]]}}' class='ask'>去提问</navigator>
+  <text bindtap='toAsk' class='ask'>去提问</text>
  </view>
 
   <!-- 地区选择器 -->

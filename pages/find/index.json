@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+      "lists": "/components/list/list",
+      "post-list": "/components/postList/list",
+      "tag": "/components/tag/tag",
+    }
+}
