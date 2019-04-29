@@ -44,3 +44,32 @@
   position: absolute;
   top: 50%;
 }
+.loading{
+  width: 80rpx;
+  height: 80rpx;
+  margin: auto;
+  margin-top: 10px;
+  animation: loading 2s ease-in infinite;
+}
+@keyframes loading {
+  0%{
+    transform: rotate(0);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+.icon-huidaodingbu{
+  position: fixed;
+  z-index: 999;
+  bottom: 50rpx;
+  right: 20rpx;
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 80rpx;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 5px lightgrey;
+}

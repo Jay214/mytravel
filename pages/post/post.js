@@ -120,7 +120,22 @@ Page({
     }
   },
   onDelete(){
-    wx.showActionSheet({
+    wx.showModal({
+      title: '确认删除该内容？',
+      content: '',
+      success(res) {
+        if(res.confirm){
+          util.request.get('/deletePost', { id: that.data.item.id, flag: 1 })
+            .then(res => {
+              const url = (getCurrentPages()[0].route).replace('pages', '..')
+              wx.reLaunch({
+                url: '../index/index'
+              })
+            })
+        }
+      }
+    })
+   /*  wx.showActionSheet({
       itemList: ['删除'],
       itemColor: '#DD4F43',
       success(res) {
@@ -132,7 +147,7 @@ Page({
             })
           })
       }
-    });
+    }); */
    
   },
   /**

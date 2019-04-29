@@ -42,7 +42,10 @@
   <!-- 搜索结果列表 -->
   <view class='list-detail' hidden="{{!inputListShow}}">
     <scroll-view scroll-y="true" style="height:100%;">
-    <list lists="{{searchList}}"></list>
+    <lists lists="{{searchList.sight}}"></lists>
+    <post-list lists="{{searchList.posts}}"></post-list>
+    <post-list lists="{{searchList.questions}}"></post-list>
+   <no-data></no-data>
      <!--  <navigator class='item-nav' wx:for="{{searchList}}" url="../detail/detail?POIlocation={{item.location}}&name={{item.name}}&address={{item.address}}&longitude={{longitude}}&latitude={{latitude}}&sname={{sname}}&saddress={{saddress}}&city={{city}}&cityd={{citySelected}}&fromhistory=0" wx:key>
         <image class="icon" mode="widthFix" src="../../images/pos.png"></image>
         <view class='title'>{{item.name}}</view>

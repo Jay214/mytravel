@@ -22,7 +22,8 @@
     "navigationBarBackgroundColor": "#75adff",
     "backgroundColor": "#75adff",
     "navigationBarTitleText": "旅游攻略",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+      "enablePullDownRefresh": true
   },
   "tabBar": {
     "list": [

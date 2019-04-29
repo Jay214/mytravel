@@ -24,6 +24,7 @@ Page({
   onSearch(e){
     var that = this;
     if(e.detail.value.length>0){
+      wx.showNavigationBarLoading();
       const { inputVal, citySelected } = this.data;
       var history = this.data.historyList;
       if(history.indexOf(e.detail.value)<0){
@@ -32,12 +33,13 @@ Page({
       }
       util.request.get('/search', { name: citySelected, val: inputVal })
         .then(res => {
-          console.log(res.data)
+          wx.hideNavigationBarLoading();
+          console.log(res.data.data)
          // if(res.data.data){
             that.setData({
               historyListShow: false,
               inputListShow:true,
-              searchList: res.data.data.sight,
+              searchList: res.data.data,
               historyList: history
             })
           //}
@@ -45,6 +47,7 @@ Page({
           console.error('err: ',e)
           wx.showToast({
             title: '查询失败',
+            duration: 2000
           })
         })
     }
@@ -52,17 +55,19 @@ Page({
   findByhis(e){
     const that = this;
     const { citySelected } = this.data;
-    console.log(e.currentTarget.dataset.val)
+    that.setData({
+      inputVal: e.currentTarget.dataset.val
+    })
     util.request.get('/search', { name: citySelected, val: e.currentTarget.dataset.val })
       .then(res => {
         console.log(res.data)
-        if (res.data.data) {
+       // if (res.data.data) {
           that.setData({
             historyListShow: false,
             inputListShow: true,
             searchList: res.data.data
           })
-        }
+       // }
       }).catch(e => {
         console.error('err: ', e)
         wx.showToast({
@@ -154,7 +159,7 @@ Page({
   selectCity(e) {
     var dataset = e.currentTarget.dataset;
     this.setData({
-      citySelected: dataset.fullname,
+      citySelected: dataset.fullname.replace('市',''),
       cityListShow: false,
       inputListShow: false,
       historyListShow: true,
@@ -268,7 +273,7 @@ Page({
   },
   //输入
   input(e) {
-    if (e.detail.value == '') {
+   /*  if (e.detail.value == '') {
       this.setData({
         inputVal: e.detail.value,
         inputListShow: false,
@@ -276,16 +281,16 @@ Page({
         historyListShow: true
       });
       wx.hideNavigationBarLoading();
-    } else {
+    } else { */
       this.setData({
         inputVal: e.detail.value,
-        inputListShow: true,
+        inputListShow: false,
         cityListShow: false,
-        historyListShow: false
+        historyListShow: true
       });
-      wx.showNavigationBarLoading();
+      wx.hideNavigationBarLoading();
       this.keyword(this.data.citySelected + e.detail.value)
-    }
+   // }
   },
 
   //清除输入框

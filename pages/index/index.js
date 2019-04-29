@@ -11,6 +11,7 @@ const app = getApp()
 var list = []
 let that;
 let url = '/getSightList';
+let page = 2;
 Page({
   data: {
     innerTexts: [{ name: "推荐", id: 0 }, { name: '游记', id: 1 }, { name: '攻略', id: 2 }, { name: '问答', id: 3 } ],
@@ -20,7 +21,9 @@ Page({
     multiArray: city.multiArray, 
     objectMultiArray: city.objectMultiArray,
     type: 0,
-    tag: 0
+    tag: 0,
+    loading: 0,
+    top: 1
   },
 
   bindMultiPickerChange: function (e) {
@@ -166,6 +169,10 @@ Page({
     })
   },
   getCollectList: function (e) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     //  let url = ''
     that.setData({
       type: e.detail
@@ -186,9 +193,22 @@ Page({
         })
         that.selectComponent('#tag').resetTab()
         console.log(res.data) 
+        wx.hideLoading()
+      }).catch(e => {
+        console.error('err: ',e)
+        wx.hideLoading()
+        wx.showToast({
+          title: '加载出错',
+          icon: 'loading',
+          duration: 1500
+        })
       }) 
   },  
   switchTag: function(e) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     that.setData({
       tag: e.detail 
     })
@@ -199,7 +219,16 @@ Page({
         that.setData({
           lists: res.data.data
         })
-      })
+        wx.hideLoading()
+      }).catch(e => {
+        console.error('err: ', e)
+        wx.hideLoading()
+        wx.showToast({
+          title: '加载出错',
+          icon: 'loading',
+          duration: 1500
+        })
+      }) 
   },
   onShow: function(){
     wx.showTabBar({
@@ -216,5 +245,42 @@ Page({
     wx.navigateTo({
       url: `../ask/publish?province=${that.data.multiArray[0][that.data.multiIndex[0]]}&city=${that.data.multiArray[1][that.data.multiIndex[1]]}`
     })
+  },
+  onReachBottom(){
+    that.setData({ loading: 1 })
+    const name = that.data.multiArray[1][that.data.multiIndex[1]];
+    util.request.get(url, { name: name, tag: that.data.tags[that.data.tag].name, type: that.data.type,page:page++ })
+      .then(res => {
+        // console.log(res.data)
+        that.setData({
+          lists: that.data.lists.concat(res.data.data),
+          loading: 0
+        })
+      }).catch(e => {
+        console.error('err: ', e)
+        that.setData({ loading: 0 })
+        wx.showToast({
+          title: '加载出错',
+          icon: 'loading',
+          duration: 1500
+        })
+      })
+  },
+  //回到顶部
+  gotoTop() {
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
+  },
+  //监听页面滚动
+  onPageScroll(e){
+
+    if(e.scrollTop>=500){
+      that.setData({
+        top: 0
+      })
+    }else{
+      that.setData({ top: 1 })
+    }
   }
 })

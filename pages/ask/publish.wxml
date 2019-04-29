@@ -29,9 +29,12 @@
   </picker>
 
   </view>
-  <view class='section showTag iconfont icon-weixin' bindtap='showTag'>
+  <view class='section showTag iconfont icon-biaoqian' bindtap='showTag'>
     选择标签
   </view>
+  <view class="section">
+    <tag id="tag" tags="{{selectedTags}}"></tag>
+</view>
 <view class="section">
     <button class='send' bindtap='bindSubmit'>发布</button>
 </view>

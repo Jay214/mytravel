@@ -1,0 +1,5 @@
+<!--components/noData/noData.wxml-->
+    <view class='no_data' wx:if="{{!searchList.sight.length&&!searchList.posts.length&&!searchList.questions.length}}">
+    暂无数据~
+    <image src='../../img/no_data.png'></image>
+    </view>

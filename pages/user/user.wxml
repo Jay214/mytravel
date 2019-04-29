@@ -23,5 +23,6 @@
     <collection innerTexts="{{innerTexts}}" bindonTab="getCollectList"></collection>
     <selfLists wx:if="{{type==0}}" lists="{{lists}}"></selfLists>
     <collectLists wx:else lists="{{lists}}"></collectLists>
+    <no-data wx:if="{{!lists.length}}"></no-data>
   </view>
 </view>

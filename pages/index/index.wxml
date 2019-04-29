@@ -36,6 +36,8 @@
    
    <lists wx:if="{{type==0}}" lists="{{lists}}" currentTab="{{tag}}"></lists>
    <post-list wx:if="{{type!=0}}" lists="{{lists}}" currentTab="{{tag}}"></post-list>
+   <no-data wx:if="{{!lists.length}}"></no-data>
   </view>
-  
+  <image wx:if="{{loading}}" src='../../img/loading.png' class='loading'></image>
 </view>
+<view hidden='{{top}}' class='iconfont icon-huidaodingbu' bindtap='gotoTop'></view>

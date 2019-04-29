@@ -16,7 +16,7 @@ Page({
     hide: true,
     src: [],
     area: '惠州市惠城区',
-    type: ['游记','攻略','问答'],
+    type: ['游记','攻略'],
     index:0,
     date: util.formatTime(new Date()),
     end: util.formatTime(new Date()),
@@ -27,6 +27,7 @@ Page({
       { name: '交通', id: 3, choosed: 0 }, { name: '住宿', id: 4, choosed: 0 }, { name: '自驾游', id: 5, choosed: 0 }, 
       { name: '徒步', id: 6, choosed: 0}
       ],
+    selectedTags:[],
       val: '',
       title: '',
       test: '',
@@ -66,7 +67,12 @@ Page({
     that.setData({ hide: false })
   },
   hideTag(){
-    that.setData({ hide: true }) 
+  
+    var arr = [];
+    that.data.tags.forEach(i => {
+      if(i.choosed){ arr.push(i) }
+    })
+    that.setData({ hide: true, selectedTags: arr })
   },
   switchTag(e){
     let a = that.data.tags;

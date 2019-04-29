@@ -2,6 +2,6 @@
     "usingComponents": {
       "lists": "/components/list/list",
       "post-list": "/components/postList/list",
-      "tag": "/components/tag/tag",
+      "no-data": "/components/noData/noData"
     }
 }

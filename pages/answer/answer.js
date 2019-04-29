@@ -131,12 +131,21 @@ Page({
       })
   },
   onDelete() {
-    util.request.get('/deletePost', { id: that.data.item.id, flag: 2 })
-      .then(res => {
-        wx.reLaunch({
-          url:'../index/index',
-        })
-      })
+    wx.showModal({
+      title: '确认删除该内容？',
+      content: '',
+      success(res) {
+        if (res.confirm) {
+          util.request.get('/deletePost', { id: that.data.item.id, flag: 2 })
+            .then(res => {
+              wx.reLaunch({
+                url: '../index/index',
+              })
+            })
+        }
+      }
+    })
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -59,7 +59,11 @@ Page({
     that.setData({ hide: false })
   },
   hideTag(){
-    that.setData({ hide: true }) 
+    var arr = [];
+    that.data.tags.forEach(i => {
+      if (i.choosed) { arr.push(i) }
+    })
+    that.setData({ hide: true, selectedTags: arr })
   },
   switchTag(e){
     let a = that.data.tags;

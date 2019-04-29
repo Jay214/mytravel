@@ -4,6 +4,7 @@
     "lists": "/components/list/list",
     "post-list": "/components/postList/list",
     "tag": "/components/tag/tag",
-    "dialog": "/components/dialog/dialog"
+    "dialog": "/components/dialog/dialog",
+    "no-data": "/components/noData/noData"
   }
 }

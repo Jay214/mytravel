@@ -116,11 +116,13 @@
   color: white;
 }
 .showTag{
-  margin-bottom: 60px;
   border: 1px dashed #aaa;
   border-radius: 3px;
-  width: 180rpx;
+  width: 200rpx;
   text-align: center;
   display: inline-block;
   padding: 6rpx 16rpx;
+}
+#tag{
+    margin-bottom: 60px;
 }

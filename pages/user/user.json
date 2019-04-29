@@ -3,6 +3,7 @@
     "dialog": "/components/dialog/dialog",
     "collection": "/components/collection/collection",
     "selfLists": "/components/selfList/list",
-    "collectLists": "/components/postList/list"
+    "collectLists": "/components/postList/list",
+    "no-data": "/components/noData/noData"
   }
 }
