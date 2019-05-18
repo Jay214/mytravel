@@ -19,7 +19,10 @@ Page({
     s_sight_addr: "",
     s_sight_in_list: "",
     traffic: "",
-    type: 0
+    type: 0,
+    distance: '',
+    lat:0,
+    lng: 0
   },
   changeIndicatorDots(e) {
     this.setData({
@@ -66,13 +69,45 @@ Page({
           traffic: traffic,
           addr: options.title,
           type: options.tag
-
         })
-        console.log(res.data.data)
+       
+        setTimeout(() => {
+          util.get(`https://apis.map.qq.com/ws/geocoder/v1/?address=${that.data.s_sight_addr}&key=NSABZ-UPSWX-7R343-7SZYT-OULUE-6OFTW`)
+            .then(res => {
+              console.log(res)
+              const { lat, lng } = res.data.result.location
+              const la = wx.getStorageSync('la');
+              const lg = wx.getStorageSync('lg');
+              const url = `https://apis.map.qq.com/ws/distance/v1/?mode=driving&from=${la},${lg}&to=${lat},${lng}&key=NSABZ-UPSWX-7R343-7SZYT-OULUE-6OFTW`;
+              util.get(url)
+                .then(res => {
+                  const distance = res.data.result.elements[0].distance
+                  that.setData({
+                    distance: distance > 1000 ? parseInt(distance / 1000) + '公里' : distance + 'm',
+                    lat: lat,
+                    lng: lng
+                  })
+                })
+            })
+        },50)
+      })
 
+   
+  },
+  openMap(){
+    util.get(`https://apis.map.qq.com/ws/geocoder/v1/?address=${that.data.s_sight_addr}&key=NSABZ-UPSWX-7R343-7SZYT-OULUE-6OFTW`)
+      .then(res => {
+       
+        const { lat, lng } = that.data;
+        wx.openLocation({
+          latitude: lat, // 纬度，范围为-90~90，负数表示南纬
+          longitude: lng, // 经度，范围为-180~180，负数表示西经
+          scale: 18, // 缩放比例
+          name: that.data.s_sight_addr,
+          address: that.data.s_sight_addr
+        })      
       })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

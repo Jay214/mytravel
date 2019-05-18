@@ -72,9 +72,9 @@
     </view>
   </scroll-view>
 <view class='modal' hidden='{{hide}}' catchtap='hideTag'>
-  <view class='box'>
+  <view class='box' catchtap='stopBubble'>
     <tag tags="{{tags}}" bindswitchTag="switchTag"></tag>
-    <button class='comfirm' catchtap='hideTag'>确认</button>
+    <button class='comfirm' catchtap='addTag'>确认</button>
   </view>
 </view>
 

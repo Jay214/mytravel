@@ -27,7 +27,11 @@
   </view>
   </view>
 
-  <view class='tip'><text class='iconfont icon-location'></text>  {{s_sight_addr}}</view>
+  <view class='tip'><text class='iconfont icon-location'></text>
+    {{s_sight_addr}}
+  </view>
+  <view class='tip' wx:if="{{distance}}"><text class='distance'>驾车距离{{distance}}</text>
+    <text bindtap='openMap' class='guide'>导航</text></view>
   <view class='tip'><text class='iconfont icon-shijian'></text>  {{s_sight_in_list}}</view>
   <view class='tip' wx:if="{{!!traffic}}"><text class='iconfont icon-jiaotong'></text>  交通：{{traffic}}</view>
 </view>

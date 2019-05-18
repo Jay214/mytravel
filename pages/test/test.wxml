@@ -1,2 +1,2 @@
 <!--pages/test/test.wxml-->
-<web-view src="http://localhost/edit.html"></web-view>
+<web-view src="http://192.168.43.66/edit.html"></web-view>

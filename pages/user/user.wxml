@@ -1,18 +1,19 @@
 <!--user.wxml-->
-<view>
+<!-- <view>
 <dialog id='dialog' 
       title='登录提示' 
       content='小程序需要您的授权才能提供更好的服务哦' 
       confirmText='知道了'
       bind:bindGetUserInfo='bindGetUserInfo'>
 </dialog>
-</view> 
+</view>  -->
 <view class="container">
   <view class="userinfo">
    <!--  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
     <block>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text><image src='../../img/msg.png' bindtap='switchMsg' class='xiaoxi'></image>
+      <view class='msg' hidden='{{!msg}}'>{{msg}}</view>
     </block>
   </view>
   <view class="usermotto">

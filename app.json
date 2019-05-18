@@ -8,9 +8,11 @@
     "pages/sight/sight",
     "pages/answer/answer",
     "pages/post/post",
-    "pages/search/search",
+    "pages/test/test",
+    "pages/ask/publish",
     "pages/find/index",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/msg/msg"
   ],
   "permission": {
     "scope.userLocation": {
@@ -23,7 +25,7 @@
     "backgroundColor": "#75adff",
     "navigationBarTitleText": "旅游攻略",
     "navigationBarTextStyle": "white",
-      "enablePullDownRefresh": true
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "list": [
@@ -46,8 +48,11 @@
         "selectedIconPath": "./img/icon/user1.png"
       }
     ],
-    "color": "black",
+    "color": "#000",
     "selectedColor": "#75adff"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "networkTimeout": {
+    "request": 10000
+  }
 }

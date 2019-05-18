@@ -26,3 +26,21 @@
   width: 100%;
   margin-top: 15px;
 }
+.xiaoxi{
+  width: 90rpx;
+  height: 90rpx;
+  margin-left: 50px;
+}
+.msg{
+  position: relative;
+  width: 60rpx;
+  height: 35rpx;
+  padding: 2px 4px;
+  background: red;
+  color: white;
+  border-radius: 35rpx;
+  top: -10px;
+  left: -8px;
+  font-size: 30rpx;
+  text-align: center;
+}

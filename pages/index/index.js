@@ -3,9 +3,10 @@
 const util = require('../../utils/util.js')
 const city = require('../../static/region.js')
 const tags = [
-  { name: '全部', id: 0, choosed: 0 },{name: '景点推荐', id: 1, choosed: 0},  { name: '美食', id: 2, choosed: 0 },
+  { name: '全部', id: 0, choosed: 0 }, { name: '购物', id: 1, choosed: 0 }, { name: '美食', id: 2, choosed: 0 },
   { name: '交通', id: 3, choosed: 0 }, { name: '住宿', id: 4, choosed: 0 }, { name: '自驾游', id: 5, choosed: 0 },
-  { name: '徒步', id: 6, choosed: 0 }, { name: '购物', id: 7, choosed: 0 }
+  { name: '出游准备', id: 6, choosed: 0 }, { name: '游玩娱乐', id: 7, choosed: 0 }, { name: '实用贴士', id: 8, choosed: 0 },
+  { name: '人文', id: 9, choosed: 0 }, { name: '景点推荐', id: 10, choosed: 0 },{ name: '其他', id: 11, choosed: 0 }
 ]
 const app = getApp()
 var list = []
@@ -125,13 +126,14 @@ Page({
   },
   onLoad: function () {
     wx.getLocation({ 
-      type: 'wgs84',
+      type: 'gcj02',
       success(res) { 
         const latitude = res.latitude
         const longitude = res.longitude
         let url = 'https://apis.map.qq.com/ws/geocoder/v1/?location='
         url += `${latitude},${longitude}&key=NSABZ-UPSWX-7R343-7SZYT-OULUE-6OFTW`;
-
+        wx.setStorageSync('la', latitude);
+        wx.setStorageSync('lg', longitude);
         util.get(url,null) 
           .then(res => { 
             const data = res.data.result.address_component
@@ -150,7 +152,7 @@ Page({
             })
             const m = list.findIndex(i => i==city)
             that.setData({ multiIndex: [n,m]})
-            return util.get(`http://10.200.116.44/getSightList?name=${city}&tag=全部`)
+            return util.get(`http://192.168.43.66/getSightList?name=${city}&tag=全部`)
           }).then(res => {
             //console.log(res)
             that.setData({
@@ -213,22 +215,31 @@ Page({
       tag: e.detail 
     })
     const name = that.data.multiArray[1][that.data.multiIndex[1]];
-    util.request.get(url, { name: name, tag: that.data.tags[e.detail].name, type: that.data.type })
-      .then(res => {  
-       // console.log(res.data)
-        that.setData({
-          lists: res.data.data
-        })
-        wx.hideLoading()
-      }).catch(e => {
-        console.error('err: ', e)
-        wx.hideLoading()
-        wx.showToast({
-          title: '加载出错',
-          icon: 'loading',
-          duration: 1500
-        })
-      }) 
+   try{
+     util.request.get(url, { name: name, tag: that.data.tags[e.detail].name, type: that.data.type })
+       .then(res => {
+         // console.log(res.data)
+         that.setData({
+           lists: res.data.data
+         })
+         wx.hideLoading()
+       }).catch(e => {
+         console.error('err: ', e)
+         wx.hideLoading()
+         wx.showToast({
+           title: '加载出错',
+           icon: 'loading',
+           duration: 1500
+         })
+       }) 
+   }catch(e){
+     wx.hideLoading()
+     wx.showToast({
+       title: '加载出错',
+       icon: 'loading',
+       duration: 1500
+     })
+   }
   },
   onShow: function(){
     wx.showTabBar({
@@ -247,24 +258,29 @@ Page({
     })
   },
   onReachBottom(){
-    that.setData({ loading: 1 })
-    const name = that.data.multiArray[1][that.data.multiIndex[1]];
-    util.request.get(url, { name: name, tag: that.data.tags[that.data.tag].name, type: that.data.type,page:page++ })
-      .then(res => {
-        // console.log(res.data)
-        that.setData({
-          lists: that.data.lists.concat(res.data.data),
-          loading: 0
+    if(that.data.type==0){
+      that.setData({ loading: 1 })
+      const name = that.data.multiArray[1][that.data.multiIndex[1]];
+      util.request.get(url, { name: name, tag: that.data.tags[that.data.tag].name, type: that.data.type, page: page++ })
+        .then(res => {
+          // console.log(res.data)
+          that.data.lists.forEach(i => {
+
+          })
+          that.setData({
+            lists: that.data.lists.concat(res.data.data),
+            loading: 0
+          })
+        }).catch(e => {
+          console.error('err: ', e)
+          that.setData({ loading: 0 })
+          wx.showToast({
+            title: '加载出错',
+            icon: 'loading',
+            duration: 1500
+          })
         })
-      }).catch(e => {
-        console.error('err: ', e)
-        that.setData({ loading: 0 })
-        wx.showToast({
-          title: '加载出错',
-          icon: 'loading',
-          duration: 1500
-        })
-      })
+    }
   },
   //回到顶部
   gotoTop() {

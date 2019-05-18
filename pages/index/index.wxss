@@ -71,5 +71,5 @@
   font-size: 80rpx;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 0 5px lightgrey;
+  box-shadow: 0 0 5px rgb(143, 142, 142);
 }

@@ -77,8 +77,9 @@ class Request {
 }
 
 const request = new Request({
-  baseURL: 'http://10.200.116.44',
-  /* baseURL: 'http://192.168.43.66', */
+  //手机
+  /* baseURL: 'http://10.200.116.44', */
+  baseURL: 'http://192.168.43.66',
   withBaseURL: true
 })
 

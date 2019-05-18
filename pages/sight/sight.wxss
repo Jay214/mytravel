@@ -91,3 +91,14 @@
 .desc_all{
   line-height: 50rpx;
 }
+.distance{
+  color: #75adff;
+  font-size: 28rpx;
+}
+.guide{
+  margin-left: 10px;
+  padding: 2px 4px;
+  border: 1px solid #000;
+  text-align: center;
+  border-radius: 6px;
+}

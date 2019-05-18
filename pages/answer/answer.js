@@ -20,7 +20,8 @@ Page({
       userId:0
     },
     show: true,
-    content: ''
+    content: '',
+    hide:true
   },
   replyFocus(e){
     this.setData({ show: false })
@@ -133,7 +134,7 @@ Page({
   onDelete() {
     wx.showModal({
       title: '确认删除该内容？',
-      content: '',
+      content: '',  
       success(res) {
         if (res.confirm) {
           util.request.get('/deletePost', { id: that.data.item.id, flag: 2 })
@@ -146,6 +147,16 @@ Page({
       }
     })
     
+  },
+  onPush(e){
+    that.setData({
+      hide:false
+    })
+  },
+  hidePush(){
+    that.setData({
+      hide:true
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

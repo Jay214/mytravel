@@ -33,7 +33,7 @@
 
         </view>
         <view class="history-item-del" bindtap="del" data-index="{{index}}">
-          <text>删除</text>
+          <text class='iconfont icon-shanchu'></text>
         </view>
       </view>
     </scroll-view>
@@ -45,7 +45,7 @@
     <lists lists="{{searchList.sight}}"></lists>
     <post-list lists="{{searchList.posts}}"></post-list>
     <post-list lists="{{searchList.questions}}"></post-list>
-   <no-data></no-data>
+   <no-data wx:if="{{!searchList.sight.length&&!searchList.posts.length&&!searchList.questions.length}}"></no-data>
      <!--  <navigator class='item-nav' wx:for="{{searchList}}" url="../detail/detail?POIlocation={{item.location}}&name={{item.name}}&address={{item.address}}&longitude={{longitude}}&latitude={{latitude}}&sname={{sname}}&saddress={{saddress}}&city={{city}}&cityd={{citySelected}}&fromhistory=0" wx:key>
         <image class="icon" mode="widthFix" src="../../images/pos.png"></image>
         <view class='title'>{{item.name}}</view>

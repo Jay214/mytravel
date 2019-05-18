@@ -4,6 +4,7 @@ const app = getApp()
 const util = require('../../utils/util.js')
 let url = '/personPost'
 let that
+let a,b
 Page({
   data: {
     motto: '我的收藏',
@@ -18,7 +19,9 @@ Page({
       { title: "很难无法完成很难无法完成！很难无法完成很难无法完成", src: "/img/pic.jpg", pv: 999, collect: 999 },
       { title: "很难无法完成很难无法完成！很难无法完成很难无法完成！很难无法完成很难无法完成！", src: "/img/pic.jpg", pv: 999, collect: 999 },
     ],
-    type: 0
+    type: 0,
+    msg:0,
+    num:[]
   },
   onReady: function () {
     if (app.globalData.userInfo) {  
@@ -44,6 +47,72 @@ Page({
           lists: res.data.data
         })
       }) 
+      let qids = []
+    util.request.get('/message', { uid: app.globalData.id })
+      .then(res => {
+        qids = res.data
+         a = wx.getStorageSync('msg') ? wx.getStorageSync('msg'):0
+         b = wx.getStorageSync('arr') ? wx.getStorageSync('arr') : []
+        that.setData({ msg: parseInt(a) })
+        that.setData({
+          num: qids
+        })
+      })
+      setInterval(() => {
+
+        util.request.get('/message', { uid: app.globalData.id })
+        .then(res => {
+          const count = that.data.num;
+          let msg = 0;
+          let arr = []
+          res.data.forEach((i,k) => {
+            i.answer - count[k].answer>0 ? arr.push(i):''
+            msg += (i.answer-count[k].answer)
+          })
+          if(msg>0){
+            wx.setStorageSync('arr', b.concat(arr))
+            wx.setStorageSync('msg', msg+parseInt(a))
+            that.setData({ msg: msg+parseInt(a) })
+          }
+        })
+      },5000)
+  },
+  onShow(){
+   /*  let qids = []
+    util.request.get('/message', { uid: app.globalData.id })
+      .then(res => {
+        qids = res.data
+        a = wx.getStorageSync('msg') ? wx.getStorageSync('msg') : 0
+        b = wx.getStorageSync('arr') ? wx.getStorageSync('arr') : []
+        that.setData({ msg: parseInt(a) })
+        that.setData({
+          num: qids
+        })
+      })
+    var timer = null
+    clearInterval(timer)
+    var timer = setInterval(() => {
+      util.request.get('/message', { uid: app.globalData.id })
+        .then(res => {
+          const count = that.data.num;
+          let msg = 0;
+          let arr = []
+          res.data.forEach((i, k) => {
+            i.answer - count[k].answer > 0 ? arr.push(i) : ''
+            msg += (i.answer - count[k].answer)
+          })
+          if (msg > 0) {
+            wx.setStorageSync('arr', b.concat(arr))
+            wx.setStorageSync('msg', msg + parseInt(a))
+            that.setData({ msg: msg + parseInt(a) })
+          }
+        })
+    }, 5000) */
+  },
+  switchMsg(){
+    wx.navigateTo({
+      url: '../msg/msg',
+    })
   },
   //查询收藏
   getCollectList: function(e){

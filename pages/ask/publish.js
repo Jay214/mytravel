@@ -2,6 +2,7 @@
 const util = require('../../utils/util.js')
 const App = getApp();
 let that;
+var arr = [];
 Page({
 
   /**
@@ -20,7 +21,8 @@ Page({
     tags: [
       { name: '景点推荐', id: 0, choosed: 0 }, { name: '购物', id: 1, choosed: 0 }, { name: '美食', id: 2, choosed: 0 }, 
       { name: '交通', id: 3, choosed: 0 }, { name: '住宿', id: 4, choosed: 0 }, { name: '自驾游', id: 5, choosed: 0 }, 
-      { name: '徒步', id: 6, choosed: 0}
+      { name: '出游准备', id: 6, choosed: 0 }, { name: '游玩娱乐', id: 7, choosed: 0 },{ name: '实用贴士', id: 8, choosed: 0 },
+      { name: '人文', id: 9, choosed: 0 }, { name: '其他', id: 10, choosed: 0 }
       ],
       val: '',
       title: '',
@@ -58,17 +60,34 @@ Page({
   showTag(){
     that.setData({ hide: false })
   },
-  hideTag(){
-    var arr = [];
+  addTag(){
+     arr = [];
     that.data.tags.forEach(i => {
       if (i.choosed) { arr.push(i) }
     })
     that.setData({ hide: true, selectedTags: arr })
   },
+  hideTag(){
+    that.setData({ hide: true })
+  },
+  stopBubble(){
+  },
   switchTag(e){
-    let a = that.data.tags;
-    a[e.detail].choosed = !a[e.detail].choosed;
-    that.setData({ tags: a })
+    if (arr.length == 3 && !that.data.tags[e.detail].choosed) {
+      wx.showToast({
+        title: '只能选择最多三个标签',
+        icon: 'none'
+      })
+    } else {
+      let a = that.data.tags;
+      a[e.detail].choosed = !a[e.detail].choosed;
+      that.setData({ tags: a })
+      if (a[e.detail].choosed) {
+        arr.push(1)
+      } else {
+        arr.pop()
+      }
+    }
   },
   bindSubmit(){
     setTimeout(() => {
@@ -106,9 +125,9 @@ Page({
               })
             }
             setTimeout(() => {
-              wx.switchTab({
-                url: '/pages/index/index',
-              }, 2000)
+              wx.reLaunch({
+                url: '../index/index'
+              })
             })
           }).catch(err => {
             wx.showToast({

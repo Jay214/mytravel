@@ -5,7 +5,7 @@ view{
 .tag{
   float: left;
   background: #fff;
-  margin: 26rpx 26rpx 0 0;
+  margin: 16rpx 26rpx 0 0;
   padding: 0 20rpx;
   font-size: 26rpx;   
 }

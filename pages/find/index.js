@@ -158,6 +158,7 @@ Page({
   //选择城市
   selectCity(e) {
     var dataset = e.currentTarget.dataset;
+    console.log(dataset.fullname.replace('市|', ''))
     this.setData({
       citySelected: dataset.fullname.replace('市',''),
       cityListShow: false,
